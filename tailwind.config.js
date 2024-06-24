@@ -8,11 +8,39 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        circularLight: ' repeating-radial-gradient(rgba(0,0,0,0.4), #0891B2,#000 5px 10%)',
       },
+
+      keyframes: {
+        slidein: {
+          '0%': { transform: 'translateX(150vw) scaleX(2)' },
+          '100%': { transform: 'translateX(0) scaleX(1)' },
+        },
+      },
+      animation: {
+        slidein: 'slidein 2s forwards',
+      },
+
+      boxShadow: {
+        'custom': '0 0 20px rgb(4,127,178)',
+      },
+
+
     },
+
   },
-  plugins: [],
+  daisyui: {
+    themes: ["light", "valentine", "black"],
+  },
+  plugins: [require('daisyui'),
+  function ({ addUtilities }) {
+    addUtilities({
+      '.no-scrollbar': {
+        '-webkit-overflow-scrolling': 'touch',
+        'scrollbar-width': 'none',
+        '-ms-overflow-style': 'none',
+      }
+    }, ['responsive']);
+  }
+  ],
 };
